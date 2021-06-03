@@ -46,14 +46,7 @@ namespace Soons.ViewModels
                             {
                                 scanFinished = true;
                                 codigo = result.Text;
-                                codigo = "91883939";
                                 Prod producto = await this.ServiceSoons.ProductoBySKU(codigo);
-                                producto.Imagen1 = "dunkoffwhitemichigan1.jpg";
-                                producto.Imagen2 = "dunkoffwhitemichigan2.jpg";
-                                producto.Imagen3 = "dunkoffwhitemichigan3.jpg";
-                                producto.Imagen4 = "dunkoffwhitemichigan4.jpg";
-                                producto.Imagen5 = "dunkoffwhitemichigan5.jpg";
-                                producto.Imagen6 = "dunkoffwhitemichigan6.jpg";
                                 List<Stock> stock = await this.ServiceSoons.GetStockById(producto.Id);
                                 ViewModelDetails viewModel = App.ServiceLocator.ViewModelDetails;
                                 viewModel.Stock = new ObservableCollection<Stock>(stock);

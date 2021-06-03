@@ -1,4 +1,4 @@
-﻿using Soons.Base;
+﻿    using Soons.Base;
 using Soons.Models;
 using Soons.Services;
 using System;
@@ -27,7 +27,7 @@ namespace Soons.ViewModels
             set
             {
                 this._Producto = value;
-                OnPropertyChanged("Stock");
+                OnPropertyChanged("Producto");
             }
         }
         public ObservableCollection<Stock> Stock 
