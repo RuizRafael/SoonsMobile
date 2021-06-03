@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soons.Views.Details"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label Text="{Binding Producto.Name}" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"></Label>
+            </Frame>
+
+            <CarouselView ItemsSource="{Binding Fotos}" IndicatorView="{x:Reference monkeysIndicator}" IsScrollAnimated="True">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame HasShadow="True" BorderColor="#2196F3" CornerRadius="5" Margin="20" HeightRequest="300" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                                <StackLayout>
+                                    <Image Source="{Binding .}" Aspect="AspectFill" HeightRequest="250" WidthRequest="300" HorizontalOptions="Center" />
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="monkeysIndicator" IndicatorColor="LightGray" SelectedIndicatorColor="Gray" IndicatorsShape="Circle"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+
+            <Label Text="{Binding Producto.SKU, StringFormat='SKU: {0}'}" VerticalOptions="Start" FontSize="20" HorizontalOptions="CenterAndExpand" Padding="0,15,0,0"/>
+            <Label Text="{Binding Producto.Price, StringFormat='{0}€'}" VerticalOptions="Start" FontSize="35" HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Stock}" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="15,0">
+                                <Label Text="{Binding Size}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="20" Padding="0,0,30,0"></Label>
+                                <Label Text="{Binding Units, StringFormat='{0} uds'}"  VerticalOptions="CenterAndExpand" HorizontalOptions="End" FontSize="20" Padding="30,0,0,0"></Label>
+                            </StackLayout>
+                        </ViewCell>    
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
