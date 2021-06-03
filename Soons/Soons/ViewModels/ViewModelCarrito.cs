@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Soons.ViewModels
 {
-    class ViewModelCarrito
+    public class ViewModelCarrito
     {
     }
 }
