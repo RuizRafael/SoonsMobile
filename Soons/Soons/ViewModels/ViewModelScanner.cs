@@ -58,6 +58,10 @@ namespace Soons.ViewModels
                                 viewModel.Fotos.Add(producto.Imagen4);
                                 viewModel.Fotos.Add(producto.Imagen5);
                                 viewModel.Fotos.Add(producto.Imagen6);
+                                if (producto.Name.Length > 20)
+                                {
+                                    producto.Name = producto.Name.Substring(20) + "...";
+                                }
                                 Details view = new Details();
                                 view.BindingContext = viewModel;
                                 await Application.Current.MainPage.Navigation.PushModalAsync(view);

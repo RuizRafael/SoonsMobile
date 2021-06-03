@@ -8,8 +8,8 @@
     <!--Pages can be added as references or inline-->
 
     <TabbedPage.Children>
-        <local:Scanner Title="Camara" Icon="scanner.png"/>
-        <local:Tracking Title="Tracking" Icon="tracking.png"/>
-        <local:CrearCuenta Title="Usuarios" Icon="crearCuenta.png"/>
+        <local:Scanner Title="Cámara" Icon="scanner.png"/>
+        <local:Carrito Title="Carrito" Icon="tracking.png"/>
+        <local:Tracking Title="Buscador" Icon="crearCuenta.png"/>
     </TabbedPage.Children>
 </TabbedPage>

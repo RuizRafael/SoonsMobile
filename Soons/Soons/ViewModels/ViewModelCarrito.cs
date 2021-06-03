@@ -61,6 +61,12 @@ namespace Soons.ViewModels
         public async Task GetOrder()
         {
             string codigo = this.codigoPedido;
+            if (codigo != null)
+            {
+            this.Pedido = await this.ServiceSoons.getPedido(codigo);
+            this.ProductosPedidos = new ObservableCollection<ProdsOrder>(await this.ServiceSoons.getProductosPedido(this.Pedido.id));
+            this.Productos = new ObservableCollection<Prod>(await this.ServiceSoons.getProductosSoloDelPedido(new List<ProdsOrder>(this.ProductosPedidos)));
+            }
         }
     }
 }
