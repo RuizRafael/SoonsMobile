@@ -13,9 +13,11 @@ namespace Soons.ViewModels
     {
         ServiceSoons ServiceSoons;
 
+        public String codigoPedido;
+
         private ObservableCollection<Prod> _Productos;
         private Order _Pedido;
-        private ObservableCollection<ProdOrder> _ProductosPedidos;
+        private ObservableCollection<ProdsOrder> _ProductosPedidos;
 
         public ObservableCollection<Prod> Productos
         {
@@ -32,12 +34,12 @@ namespace Soons.ViewModels
             get { return this._Pedido; }
             set
             {
-                this._Peido = value;
+                this._Pedido = value;
                 OnPropertyChanged("Pedido");
             }
         }
 
-        public ObservableCollection<ProdOrder> ProductosPedidos
+        public ObservableCollection<ProdsOrder> ProductosPedidos
         {
             get { return this._ProductosPedidos; }
             set
@@ -52,10 +54,13 @@ namespace Soons.ViewModels
             ServiceSoons = serviceSoons;
             Task.Run(async () =>
             {
-                await
+                await this.GetOrder();
             });
         }
 
-
+        public async Task GetOrder()
+        {
+            string codigo = this.codigoPedido;
+        }
     }
 }
