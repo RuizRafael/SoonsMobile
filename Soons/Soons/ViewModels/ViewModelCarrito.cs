@@ -13,8 +13,11 @@ namespace Soons.ViewModels
     {
         ServiceSoons ServiceSoons;
 
+        public String codigoPedido;
+
         private ObservableCollection<Prod> _Productos;
         private Order _Pedido;
+        private ObservableCollection<ProdsOrder> _ProductosPedidos;
 
         public ObservableCollection<Prod> Productos
         {
@@ -36,9 +39,34 @@ namespace Soons.ViewModels
             }
         }
 
+        public ObservableCollection<ProdsOrder> ProductosPedidos
+        {
+            get { return this._ProductosPedidos; }
+            set
+            {
+                this._ProductosPedidos = value;
+                OnPropertyChanged("ProductosPedidos");
+            }
+        }
 
-       
+        public ViewModelCarrito(ServiceSoons serviceSoons)
+        {
+            ServiceSoons = serviceSoons;
+            Task.Run(async () =>
+            {
+                await this.GetOrder();
+            });
+        }
 
-
+        public async Task GetOrder()
+        {
+            string codigo = this.codigoPedido;
+            if (codigo != null)
+            {
+            this.Pedido = await this.ServiceSoons.getPedido(codigo);
+            this.ProductosPedidos = new ObservableCollection<ProdsOrder>(await this.ServiceSoons.getProductosPedido(this.Pedido.id));
+            this.Productos = new ObservableCollection<Prod>(await this.ServiceSoons.getProductosSoloDelPedido(new List<ProdsOrder>(this.ProductosPedidos)));
+            }
+        }
     }
 }

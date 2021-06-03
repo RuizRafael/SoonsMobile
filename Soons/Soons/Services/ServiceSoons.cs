@@ -54,5 +54,23 @@ namespace Soons.Services
             Prod producto = productos.First(x => x.SKU == codigo);
             return producto;
         }
+
+        public async Task<Order> getPedido(string codigo)
+        {
+            Order pedido = await this.ApiGet<Order>("api/GetOrderByOrderNumber/" + codigo);
+            return pedido;
+        }
+
+        public async Task<List<ProdsOrder>> getProductosPedido(int id)
+        {
+            List<ProdsOrder> ProductosPedido = await this.ApiGet<List<ProdsOrder>>("api/GetProductosPedido/" + id);
+            return ProductosPedido;
+        }
+
+        public async Task<List<Prod>> getProductosSoloDelPedido(List<ProdsOrder> productosOrder)
+        {
+            List<Prod> productos = await this.ApiGet<List<Prod>>("api/GetProductos");
+            return productos.Where(x => productosOrder.Select(y => y.idProd).Contains(x.Id)).ToList();
+        }
     }
 }

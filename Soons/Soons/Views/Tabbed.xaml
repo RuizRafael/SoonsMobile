@@ -9,7 +9,7 @@
 
     <TabbedPage.Children>
         <local:Scanner Title="Cámara" Icon="scanner.png"/>
-        <local:Tracking Title="Carrito" Icon="tracking.png"/>
-        <local:CrearCuenta Title="Buscador" Icon="crearCuenta.png"/>
+        <local:Carrito Title="Carrito" Icon="tracking.png"/>
+        <local:Tracking Title="Buscador" Icon="crearCuenta.png"/>
     </TabbedPage.Children>
 </TabbedPage>
