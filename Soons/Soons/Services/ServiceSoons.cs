@@ -55,22 +55,64 @@ namespace Soons.Services
             return producto;
         }
 
-        public async Task<Order> getPedido(string codigo)
+        public async Task<Order> getPedidoByOrderNumber(string codigo)
         {
-            Order pedido = await this.ApiGet<Order>("api/GetOrderByOrderNumber/" + codigo);
+            Order pedido = await this.ApiGet<Order>("api/GetOrdersByNumber/" + codigo);
             return pedido;
         }
 
         public async Task<List<ProdsOrder>> getProductosPedido(int id)
         {
-            List<ProdsOrder> ProductosPedido = await this.ApiGet<List<ProdsOrder>>("api/GetProductosPedido/" + id);
+            List<ProdsOrder> ProductosPedido = await this.ApiGet<List<ProdsOrder>>("api/GetProdOrdersByIdProd/" + id);
             return ProductosPedido;
         }
 
         public async Task<List<Prod>> getProductosSoloDelPedido(List<ProdsOrder> productosOrder)
         {
-            List<Prod> productos = await this.ApiGet<List<Prod>>("api/GetProductos");
-            return productos.Where(x => productosOrder.Select(y => y.idProd).Contains(x.Id)).ToList();
+            List<Prod> productos = await this.ApiGet<List<Prod>>("api/GetProducts");
+            return productos.Where(x => productosOrder.Select(y => y.IdProd).Contains(x.Id)).ToList();
+        }
+
+        public async Task insertOrder(Order order)
+        {
+            String request = "api/InsertOrders";
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = this.uri;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
+
+                await client.PostAsync(request, content);
+            }
+        }
+
+        public async Task insertProdOrders(ProdsOrder prodOrder)
+        {
+            String request = "api/insertProdOrders";
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = this.uri;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(prodOrder), Encoding.UTF8, "application/json");
+
+                await client.PostAsync(request, content);
+            }
+        }
+        
+        public async Task updatePedido(Order order)
+        {
+            String request = "api/updateOrders";
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = this.uri;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(order), Encoding.UTF8, "application/json");
+
+                await client.PutAsync(request, content);
+            }
         }
     }
 }

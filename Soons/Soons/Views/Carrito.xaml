@@ -4,12 +4,90 @@
              x:Class="Soons.Views.Carrito"
              xmlns:local="clr-namespace:Soons"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator}, Path=ViewModelCarrito}"
-             x:Name="TrackingView">
+             x:Name="SoonsVista"
+             xmlns:converters="clr-namespace:Soons.Converters">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConverterIdToProd x:Key="converteridtoprod" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms! carrito"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Spacing="0">
+            <StackLayout IsVisible="{Binding NoFilledCart}" Padding="5" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+                <Label Text="No hay items en el carrito" FontSize="Medium" VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout IsVisible="{Binding FilledCart}" Padding="10"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <ScrollView  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <ListView ItemsSource="{Binding ProductosPedidos}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame HorizontalOptions="FillAndExpand">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                <Image Source="superearth1.jpg" HeightRequest="120" />
+                                                <StackLayout Orientation="Vertical" HorizontalOptions="Center" Padding="10">
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                        <Label Text="ZAPATILLA COLORES" />
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                        <Label Text="Unds: " />
+                                                        <Label Text="1 " />
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                        <Label Text="Precio: " />
+                                                        <Label Text="150 " />
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                </ScrollView>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="9" Padding="9">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="PEDIDO Nº " />
+                            <Label Text="342432434" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="3" />
+                            <Label Text="ARTICULOS" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="GASTOS DE ENVIO" />
+                            <Label Text="3.95€" />
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="TOTAL" FontAttributes="Bold"/>
+                            <Label Text="350€" FontAttributes="Bold" />
+                        </StackLayout>
+                    </StackLayout>
+                    <AbsoluteLayout Margin="0, 0, 18, 0">
+                        <ImageButton Source="si.png" 
+                                 Padding="7"
+                                 CornerRadius="50"
+                                 BorderWidth="1"
+                                 BackgroundColor="#80ED99"
+                                 AbsoluteLayout.LayoutFlags="PositionProportional"  
+                                 AbsoluteLayout.LayoutBounds=".95,.95,80,80"
+                                 Command="{Binding  BindingContext.CerrarPedido, Source={x:Reference SoonsVista}}"/>
+                    </AbsoluteLayout>
+
+                </StackLayout>
+            </StackLayout>
+                    <AbsoluteLayout Margin="0, 0, 18, 0">
+                        <ImageButton Source="add.png" 
+                                 Padding="7"
+                                 CornerRadius="50"
+                                 BorderWidth="1"
+                                 BackgroundColor="#80ED99"
+                                 AbsoluteLayout.LayoutFlags="PositionProportional"  
+                                 AbsoluteLayout.LayoutBounds=".95,.95,80,80"
+                                 Command="{Binding  BindingContext.AddToCart, Source={x:Reference SoonsVista}}"/>
+                    </AbsoluteLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

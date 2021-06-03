@@ -8,10 +8,10 @@ namespace Soons.Models
     public class ProdsOrder
     {
         [JsonProperty("id")]
-        public int id { get; set; }
+        public int Id { get; set; }
         [JsonProperty("idOrder")]
-        public int idOrder { get; set; }
+        public int IdOrder { get; set; }
         [JsonProperty("idProd")]
-        public int idProd { get; set; }
+        public int IdProd { get; set; }
     }
 }
