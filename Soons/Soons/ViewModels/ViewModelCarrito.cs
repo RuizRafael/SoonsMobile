@@ -5,6 +5,7 @@ using Soons.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -22,7 +23,6 @@ namespace Soons.ViewModels
         private ObservableCollection<ProdsOrder> _ProductosPedidos;
         private bool _FilledCart;
         private bool _NoFilledCart;
-
 
         public bool FilledCart
         {
@@ -110,7 +110,8 @@ namespace Soons.ViewModels
             }
         }
 
-        public Command CerrarPedido {
+        public Command CerrarPedido
+        {
             get
             {
                 return new Command(async () =>
@@ -154,8 +155,27 @@ namespace Soons.ViewModels
                                 if (this.Pedido.Id == 0)
                                 {
                                     Order order = new Order();
+                                    bool comprobar = true;
                                     Random rnd = new Random();
-                                    order.OrderNumber = "RMC" + rnd.Next(1000000, 9999999);
+                                    String codigoAleatorio = "RMC" + rnd.Next(1000000, 9999999);
+                                    List<Order> orders = await this.ServiceSoons.GetOrders();
+                                    while (comprobar)
+                                    {
+
+                                        if (orders.Select(x => x.OrderNumber).Contains(codigoAleatorio))
+                                        {
+                                            comprobar = true;
+                                            codigoAleatorio = "RMC" + rnd.Next(1000000, 9999999);
+                                        } else
+                                        {
+                                            comprobar = false;
+                                        }
+
+                                        "update orders set state = 5 where orderNumber = 'RMC4368180'"
+                                    }
+                                    
+                                    await this.ServiceSoons.GetOrders();
+                                    order.OrderNumber = codigoAleatorio;
                                     order.State = 0;
                                     await this.ServiceSoons.insertOrder(order);
                                     Order orderEncontrado = await this.ServiceSoons.getPedidoByOrderNumber(order.OrderNumber);

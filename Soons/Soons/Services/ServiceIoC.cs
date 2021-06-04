@@ -26,6 +26,7 @@ namespace Soons.Services
             builder.RegisterType<ViewModelScanner>();
             builder.RegisterType<ViewModelTracking>();
             builder.RegisterType<ViewModelCarrito>();
+            builder.RegisterType<ViewModelBuscadorPedidos>();
             this.container = builder.Build();
         }
 
@@ -69,6 +70,13 @@ namespace Soons.Services
             get
             {
                 return this.container.Resolve<ViewModelCarrito>();
+            }
+        }
+        public ViewModelBuscadorPedidos ViewModelBuscadorPedidos
+        {
+            get
+            {
+                return this.container.Resolve<ViewModelBuscadorPedidos>();
             }
         }
     }

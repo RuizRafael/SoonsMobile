@@ -21,7 +21,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\BuscadorPedidos.xaml.cs">
+      <DependentUpon>BuscadorPedidos.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\Carrito.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BuscadorPedidos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

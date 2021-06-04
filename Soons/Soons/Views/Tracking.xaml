@@ -1,12 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Soons.Views.Tracking">
+             x:Class="Soons.Views.Tracking"
+             xmlns:local="clr-namespace:Soons"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator}, Path=ViewModelTracking}"
+             x:Name="SoonsVistaTracking"
+             xmlns:converters="clr-namespace:Soons.Converters">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConvertState x:Key="convertstate"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+                <Label Text="Seguimiento del pedido" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"></Label>
+            </Frame>
+            <StackLayout Orientation="Vertical" Padding="14">
+                <!-- 1 FRAME Y 1 STACKLATOUT(DE LA IMG FLECHA) DENTRO DE UN VIEWLIST, PARA QUE LO REPITA EN BUCLE-->
+
+                <Frame BackgroundColor="#80ED99"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Image Source="preparado.png" HeightRequest="40" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="Preparado " />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Image Source="next.png" HeightRequest="29"/>
+                </StackLayout>
+
+                <Frame BackgroundColor="#80ED99" IsVisible="{Binding State2}"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="pagado.png" HeightRequest="40" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="Pagado" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame IsVisible="{Binding NotState2}" BackgroundColor="#cccccc"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="pagado.png" HeightRequest="40" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="Pagado" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Image Source="next.png" HeightRequest="29"/>
+                </StackLayout>
+                <Frame BackgroundColor="#80ED99" IsVisible="{Binding State3}"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="empaquetado.png" HeightRequest="40" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="Empaquetado" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame IsVisible="{Binding NotState3}" BackgroundColor="#cccccc"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="empaquetado.png" HeightRequest="40" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="Empaquetado" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Image Source="next.png" HeightRequest="29"/>
+                </StackLayout>
+                <Frame BackgroundColor="#80ED99" IsVisible="{Binding State4}"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="reparto.png" HeightRequest="40" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="En reparto" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame  IsVisible="{Binding NotState4}" BackgroundColor="#cccccc"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="reparto.png" HeightRequest="40" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="En reparto" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Image Source="next.png" HeightRequest="29"/>
+                </StackLayout>
+                <Frame BackgroundColor="#80ED99" IsVisible="{Binding State5}"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="si.png" HeightRequest="35" />
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="Fecha: " />
+                            <Label Text="21/03/2021" />
+                            <Label Text="16:00:00" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame IsVisible="{Binding NotState5}" BackgroundColor="#cccccc"
+                    CornerRadius="5"
+                    HasShadow="True">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Image Source="relojito.png" HeightRequest="30" Margin="8,0,10,0"/>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                            <Label Text="Pendiente de entrega" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <!-- FIN-->
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

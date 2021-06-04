@@ -100,7 +100,7 @@ namespace Soons.Services
                 await client.PostAsync(request, content);
             }
         }
-        
+
         public async Task updatePedido(Order order)
         {
             String request = "api/updateOrders";
@@ -113,6 +113,21 @@ namespace Soons.Services
 
                 await client.PutAsync(request, content);
             }
+        }
+        public async Task<Order> GetOrderById(String number)
+        {
+
+            return await this.ApiGet<Order>("/api/GetOrdersByNumber/" + number);
+        }
+
+        public async Task<Prod> GetProductById(int id)
+        {
+            return await this.ApiGet<Prod>("/api/GetProductById/" + id);
+        }
+
+        public async Task<List<Order>> GetOrders()
+        {
+            return await this.ApiGet<List<Order>>("/api/GetOrders");
         }
     }
 }

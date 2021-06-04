@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Soons.Views.BuscadorPedidos"
+              xmlns:local="clr-namespace:Soons"
+              BindingContext="{Binding Source={x:Static local:App.ServiceLocator}
+            , Path=ViewModelBuscadorPedidos}"
+             x:Name="Buscador">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Center">
+
+            <StackLayout Padding="30" Orientation="Vertical" >
+                <Entry Placeholder="Número de pedido" 
+                       x:Name="recogernumero" 
+                       Text="{Binding Order.OrderNumber}"
+                      />
+                <Button Text="Buscar" 
+                        Command="{Binding BindingContext.BuscarPedido
+                                    , Source={x:Reference Buscador}}"
+                        CommandParameter="{Binding .}"
+                        BackgroundColor="#80ED99" 
+                        TextColor="Black" 
+                       />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
