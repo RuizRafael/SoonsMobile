@@ -170,8 +170,6 @@ namespace Soons.ViewModels
                                         {
                                             comprobar = false;
                                         }
-
-                                        "update orders set state = 5 where orderNumber = 'RMC4368180'"
                                     }
                                     
                                     await this.ServiceSoons.GetOrders();
